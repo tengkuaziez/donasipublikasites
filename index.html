@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Donasi Publikasi Artikel Ilmiah</title>
+  <meta name="description" content="Donasi sukarela untuk biaya publikasi artikel ilmiah mahasiswa." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <p class="badge">Donasi sukarela</p>
+      <h1 id="judul">…</h1>
+      <p id="subjudul" class="sub"></p>
+    </header>
+
+    <section class="card progress-card" aria-labelledby="prog-title">
+      <h2 id="prog-title" class="sr-only">Progres donasi</h2>
+      <div class="amounts">
+        <div>
+          <span class="label">Terkumpul</span>
+          <strong id="terkumpul">Rp0</strong>
+        </div>
+        <div class="right">
+          <span class="label">Target</span>
+          <strong id="target">Rp0</strong>
+        </div>
+      </div>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar">
+        <div class="fill" id="fill"></div>
+      </div>
+      <div class="meta">
+        <span id="persen">0%</span>
+        <span id="sisa">Sisa Rp0</span>
+      </div>
+      <p class="updated" id="diperbarui"></p>
+    </section>
+
+    <section class="card">
+      <h2>Tentang penggalangan ini</h2>
+      <p id="deskripsi"></p>
+    </section>
+
+    <section class="card" id="donasi">
+      <h2>Pilih nominal donasi</h2>
+      <div class="chips" id="chips"></div>
+
+      <label class="custom" for="bebas">Atau nominal bebas</label>
+      <div class="input-row">
+        <span class="prefix">Rp</span>
+        <input id="bebas" type="text" inputmode="numeric" autocomplete="off" placeholder="mis. 75.000" />
+      </div>
+      <p class="error" id="error" role="alert" hidden></p>
+
+      <button class="btn primary" id="btnBuat" type="button">Tampilkan QRIS</button>
+    </section>
+
+    <section class="card qris-card" id="hasil" hidden aria-live="polite">
+      <h2>Scan untuk membayar</h2>
+      <canvas id="qr" class="qr" width="320" height="320" aria-label="Kode QRIS dengan nominal"></canvas>
+      <p class="pay-amount">Total bayar: <strong id="totalBayar">Rp0</strong></p>
+      <p class="hint" id="kodeUnikInfo"></p>
+      <p class="hint">
+        Buka DANA, GoPay, ShopeePay, m-banking, atau aplikasi lain yang mendukung QRIS, lalu scan.
+        Nominal sudah terisi otomatis. Nama penerima di aplikasi: <strong id="namaMerchant">-</strong>.
+      </p>
+      <div class="actions">
+        <button class="btn" id="btnUnduh" type="button">Unduh QRIS</button>
+        <button class="btn ghost" id="btnTutup" type="button">Ganti nominal</button>
+      </div>
+
+      <!-- Konfirmasi di dalam website (aktif kalau apiUrl diisi di config.js) -->
+      <form class="confirm" id="formKonfirmasi" hidden novalidate>
+        <h3>Sudah membayar?</h3>
+        <label for="nama">Nama</label>
+        <input id="nama" name="nama" type="text" maxlength="60" autocomplete="name" required />
+
+        <label for="email">Email <span class="opt">(opsional, untuk ucapan terima kasih)</span></label>
+        <input id="email" name="email" type="email" maxlength="120" autocomplete="email" inputmode="email" />
+
+        <label class="check">
+          <input id="tampil" type="checkbox" />
+          <span>Tampilkan nama saya di daftar donatur</span>
+        </label>
+
+        <!-- Kolom jebakan bot: jangan diisi -->
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+
+        <p class="error" id="errorKonfirmasi" role="alert" hidden></p>
+        <button class="btn primary" id="btnKirim" type="submit">Saya sudah bayar</button>
+        <p class="hint small">Emailmu tidak ditampilkan di website. Donasi masuk ke progres setelah pengelola mengecek pembayarannya.</p>
+      </form>
+
+      <p class="success" id="suksesKonfirmasi" role="status" hidden></p>
+
+      <!-- Cadangan kalau apiUrl kosong -->
+      <a class="btn" id="btnKonfirmasi" href="#" target="_blank" rel="noopener" hidden>Konfirmasi donasi</a>
+    </section>
+
+    <section class="card" id="daftarCard" hidden>
+      <h2>Donatur terbaru</h2>
+      <ul class="donors" id="daftar"></ul>
+    </section>
+
+    <footer>
+      <p id="footer"></p>
+    </footer>
+  </main>
+
+  <script src="vendor/qrcode.js"></script>
+  <script src="qris.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
