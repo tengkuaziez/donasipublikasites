@@ -36,7 +36,7 @@ window.DONASI_CONFIG = {
   // Contoh: "https://script.google.com/macros/s/AKfycb.../exec"
   // Kosongkan ("") kalau belum dipasang: form konfirmasi disembunyikan dan
   // progres hanya dibaca dari data.json (manual).
-  apiUrl: "",
+  apiUrl: "https://script.google.com/macros/s/AKfycbxZqdXdBHjoD2jAe9POQGFKFPzMkM7Hzef8-G1n9lEOI13ars1U7meznpYF3KR7Y8yBkA/exec",
 
   // Dipakai HANYA kalau apiUrl kosong: link WhatsApp/Google Form untuk konfirmasi manual.
   // Contoh WhatsApp: "https://wa.me/62812xxxxxxx?text=Halo,%20saya%20sudah%20donasi"
